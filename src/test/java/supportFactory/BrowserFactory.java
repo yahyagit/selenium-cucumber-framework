@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 
@@ -77,6 +78,9 @@ public class BrowserFactory {
 			break;
 		case Opera:
 			caps.setCapability("browserName", "opera");
+		case PhantomJS:
+			caps.setCapability("browserName", "phantomjs");
+			break;
 		case Safari:
 			caps.setCapability("browserName", "safari");
 			break;
@@ -164,6 +168,9 @@ public class BrowserFactory {
 			return new OperaDriver();
 		case Safari:
 			return new SafariDriver();
+		case PhantomJS:
+			System.setProperty("phantomjs.binary.path", "src/test/resources/PhantomJS/phantomjs.exe");
+			return new PhantomJSDriver();
 		default:
 			throw new WebDriverException("No browser specified");
 		}
